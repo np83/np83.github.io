@@ -7,13 +7,26 @@ var Computation = function (owner, baseValue, number) {
   let self = this;
 
   this.isCorrect = ko.computed(function () {
-    console.log("isCorrect", self.answer());
     return self.answer() == self.result;
+  });
+
+  this.isInvalid = ko.computed(function(){
+    if (self.answer() === ''){
+    return false;
+    }
+    return self.isCorrect() === false;
+});
+
+  this.isCurrentQuestion = ko.computed(function(){
+    return self.owner.currentQuestion === self.number;
   });
 
   this.calculationStatus = ko.computed(function () {
     if (self.isCorrect()) {
       return "alert alert-success";
+    }
+    else if (self.isInvalid()){
+        return "alert alert-danger";
     } else if (owner.currentQuestion() < number) {
       return "alert alert-dark";
     } else if (owner.currentQuestion() === number) {

@@ -22,8 +22,10 @@
             <div class="form-group">
                 <label data-bind="text: question" class="control-label col-sm-2" for="answer"></label>
                 <div class="col-sm-10">
-                    <input data-bind='value: answer' type="text" class="form-control" id="answer"
-                        placeholder="antwoord">
+                    <input data-bind='value: answer, hasfocus: isCurrentQuestion()' 
+                    type="text" class="form-control" id="answer"
+                        
+                    placeholder="antwoord">
                 </div>
             </div>
         </div>
